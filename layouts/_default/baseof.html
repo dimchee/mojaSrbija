@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sr-Latn-RS">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title> {{ site.Title }} </title>
+  {{ partialCached "head/css.html" . }}
+  {{ partialCached "head/js.html" . }}
+</head>
+<body>
+  <header>
+    <h1>{{ site.Title }}</h1>
+    <nav>
+      <a href="/">Naslovna</a>
+      <a href="/perspectives">Perspektive</a>
+    </nav>
+  </header>
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer>
+    <p>© Besni Građani Srbije {{ now.Year }}.</p>
+  </footer>
+</body>
+</html>
+  
+{{ define "partials/head/css.html" }}
+  {{- with resources.Get "css/main.css" }}
+    {{- if eq hugo.Environment "development" }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{- else }}
+      {{- with . | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{ end }}
+
+{{ define "partials/head/js.html" }}
+  {{- with resources.Get "js/main.js" }}
+    {{- if eq hugo.Environment "development" }}
+      {{- with . | js.Build }}
+        <script src="{{ .RelPermalink }}"></script>
+      {{- end }}
+    {{- else }}
+      {{- $opts := dict "minify" true }}
+      {{- with . | js.Build $opts | fingerprint }}
+        <script src="{{ .RelPermalink }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{ end }}

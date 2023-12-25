@@ -1,0 +1,37 @@
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav > a {
+  background-color: blue;
+  color: white;
+  border-radius: 1.2em;
+  padding: 0.8em;
+  text-decoration: none;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 2em;
+}
+
+footer { 
+  position: fixed;
+  bottom: 0;
+  opacity: 0.4;
+}
+
+.perspektive {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left-align;
+  gap: 3em;
+}

@@ -27,10 +27,10 @@
 {{ define "partials/head/css.html" }}
   {{- with resources.Get "css/main.css" }}
     {{- if eq hugo.Environment "development" }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}">
+      <link rel="stylesheet" href="{{ .Permalink }}">
     {{- else }}
       {{- with . | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ .Permalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
       {{- end }}
     {{- end }}
   {{- end }}
@@ -40,12 +40,12 @@
   {{- with resources.Get "js/main.js" }}
     {{- if eq hugo.Environment "development" }}
       {{- with . | js.Build }}
-        <script src="{{ .RelPermalink }}"></script>
+        <script src="{{ .Permalink }}"></script>
       {{- end }}
     {{- else }}
       {{- $opts := dict "minify" true }}
       {{- with . | js.Build $opts | fingerprint }}
-        <script src="{{ .RelPermalink }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
+        <script src="{{ .Permalink }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
       {{- end }}
     {{- end }}
   {{- end }}

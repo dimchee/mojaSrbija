@@ -1,6 +1,6 @@
 ---
-title: {{ replace .File.ContentBaseName "-" " " | title }}
-date: {{ .Date }}
+title: Tagovan
+date: 2023-12-26T12:01:16+01:00
 tags:
   - tag1
   - tag2

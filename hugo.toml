@@ -2,3 +2,6 @@ relativeURLs = true
 baseURL = 'https://dimchee.github.io/mojaSrbija/'
 languageCode = 'sr-Latn-RS'
 title = 'Moja Srbija'
+
+[taxonomies]
+tag = 'tags'

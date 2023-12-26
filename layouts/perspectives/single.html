@@ -4,16 +4,18 @@
   {{ .Content }}
 
   <div class="perspektive">
-    {{ range $x := .Params.tweets }}
+    {{ range $name, $x := .Params.tweets }}
       <div class="perspektiva">
+        <h2>{{ $name }}</h2>
         {{ with $x.text }}
           {{ . }}
         {{ end }}
-        {{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v" $x.id -}}
-        {{- $json := getJSON $url -}}
-        {{ $json.html | safeHTML }}
+        {{ with $x.id }}
+          {{- $url := printf "https://api.twitter.com/1/statuses/oembed.json?id=%v" $x.id -}}
+          {{- $json := getJSON $url -}}
+          {{ $json.html | safeHTML }}
+        {{ end }}
       </div>
     {{ end }}
   </div>
-
 {{ end }}

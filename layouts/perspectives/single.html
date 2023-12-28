@@ -2,11 +2,12 @@
   <h1>{{ .Title }}</h1>
 
   {{ .Content }}
-
-  <div class="perspektive">
+  <div class="tabs">
     {{ range $name, $x := .Params.tweets }}
-      <div class="perspektiva">
-        <h2>{{ $name }}</h2>
+      <button onclick="window.opentab(event, '{{ $name }}')">{{ $name }}</button>
+    {{ end }}
+    {{ range $name, $x := .Params.tweets }}
+      <div id='{{ $name }}'>
         {{ with $x.text }}
           {{ . }}
         {{ end }}
@@ -18,4 +19,7 @@
       </div>
     {{ end }}
   </div>
+  <script>
+    document.getElementsByClassName('tabs')[0].getElementsByTagName('button')[0].click()
+  </script>
 {{ end }}

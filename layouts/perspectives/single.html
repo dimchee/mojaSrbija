@@ -4,7 +4,7 @@
   {{ .Content }}
   <div class="tabs">
     {{ range $name, $x := .Params.tweets }}
-      <button onclick="window.opentab(event, '{{ $name }}')">{{ $name }}</button>
+      <button onclick="opentab(event, '{{ $name }}')">{{ $name }}</button>
     {{ end }}
     {{ range $name, $x := .Params.tweets }}
       <div id='{{ $name }}'>
